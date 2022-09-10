@@ -12,7 +12,6 @@ repos:
     -   id: detect-private-key
     -   id: fix-encoding-pragma
     -   id: requirements-txt-fixer
-    -   id: no-commit-to-branch
 
 -   repo: https://github.com/psf/black
     rev: 22.3.0

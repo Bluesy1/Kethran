@@ -163,29 +163,29 @@ class Primary(Cog):
         ]
 
     async def cog_load(self) -> None:
-        """Start the automated message every friday at 5:00pm Pacific Time.
+        """Start the automated message every friday at 6:00pm Pacific Time.
 
         Parameters
         ----------
         self: Primary
             An instance of the Primary class
         """
-        pass
+        self.friday_6.start()
 
     async def cog_unload(self) -> None:  # skipcq: PYL-W0236
-        """Cancel the automated message every friday at 5:00pm Pacific Time.
+        """Cancel the automated message every friday at 6:00pm Pacific Time.
 
         Parameters
         ----------
         self: Primary
             An instance of the Primary class
         """
-        pass
+        self.friday_6.cancel()
 
     @tasks.loop(  # skipcq: PYL-E1123
-        time=datetime.time(hour=17, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("America/Los_Angeles")),
+        time=datetime.time(hour=18, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("America/Los_Angeles")),
     )
-    async def friday_5(self) -> None:
+    async def friday_6(self) -> None:
         """Automated message every friday at 5:00pm Pacific Time.
 
         Parameters
