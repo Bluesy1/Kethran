@@ -25,11 +25,18 @@
 """Kethran main module."""
 import logging
 import os
+import pathlib
 from logging.handlers import RotatingFileHandler
+from sys import version_info
 
 import discord
 from discord.ext import commands
-from dotenv import load_dotenv
+
+
+if version_info >= (3, 11):
+    import tomllib  # type: ignore
+else:
+    import tomli as tomllib
 
 
 class Kethran(commands.Bot):
@@ -76,8 +83,8 @@ def main():
         intents=discord.Intents.all(),
     )
 
-    load_dotenv()
-    bot.run(os.getenv("TOKEN"))
+    with open(pathlib.Path(__file__).parent / "config.toml", "rb") as config:
+        bot.run(tomllib.load(config)["TOKEN"])
 
 
 if __name__ == "__main__":
