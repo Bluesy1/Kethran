@@ -214,12 +214,19 @@ class Primary(Cog):
             The message that was sent
         """
         if not message.author.bot and message.channel.type is not discord.ChannelType.private:
-            if message.channel.id in [901325983838244865, 878434694713188362] and "kethran" in message.content.lower():
-                await message.channel.send(
-                    random.choice(self.responses),
-                    reference=message,
-                    mention_author=True,
-                )
+            if message.channel.id in [901325983838244865, 878434694713188362]:
+                if "kethran" in message.content.lower():
+                    await message.channel.send(
+                        random.choice(self.responses),
+                        reference=message,
+                        mention_author=True,
+                    )
+                elif "narthek" in message.content.lower():
+                    await message.channel.send(
+                        random.choice(self.responses)[::-1],
+                        reference=message,
+                        mention_author=True,
+                    )
         elif message.author.id == 184524255197659136:
             channel = await self.bot.fetch_channel(878434694713188362)
             assert isinstance(channel, discord.TextChannel)  # skipcq: BAN-B101
